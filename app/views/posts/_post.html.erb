@@ -1,0 +1,10 @@
+ 
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= "#{post.id}"%>. <%= "#{post.title}"%></h5>
+    <% if user_signed_in? %>
+      by <%= link_to "@#{post.user.username}", show_profile_path(post.user.username), class:"text-secondary text-decoration-none" %>
+    <% end %>
+    <p class="card-text"><%= "#{post.body}"%></p>
+  </div>
+</div>

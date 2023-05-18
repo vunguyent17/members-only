@@ -1,0 +1,37 @@
+  <main>
+  <% flash.each do |name, message| %>
+    <div id="error_explanation">
+      <div class="<%= name %>"><%= message unless message.blank? %></div>
+    </div>
+  <% end %>
+  <div class="card mx-auto my-4" style="width: 50rem;">
+    <div class="card-body">
+      <h3 class="card-title text-center">Create new post</h3>
+      <p class="card-text">
+        <% if @post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this article from being saved:</h2>
+            <ul>
+              <% @post.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form_with model: @post do |form| %>
+          <div class="field mb-4">
+            <%= form.label :title, class: "form-label" %><br />
+            <%= form.text_field :title, placeholder: "Write your post's title here", class:"form-control"%>
+          </div>
+          <div class="field mb-4">
+            <%= form.label :body, class: "form-label" %><br />
+            <%= form.text_area :body, placeholder: "Write your post's body here", class:"form-control"%>
+          </div>
+          <div class="actions d-grid gap-2 col-12 mx-auto mb-4">
+            <%= form.submit "Add new post", class:"btn btn-primary d-md-block" %>
+          </div>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</main>
